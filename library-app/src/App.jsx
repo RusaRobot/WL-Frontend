@@ -56,9 +56,10 @@ const App = () => {
               cursor: "pointer",
             }}
           >
-            Catalog Book
+            Book Catalogue
           </Box>
           </Link>
+          <Link to="/cart">
           <Box
             p="4"
             color="white"
@@ -69,8 +70,9 @@ const App = () => {
               cursor: "pointer",
             }}
           >
-            Help
+            Cart
           </Box>
+          </Link>
           <Spacer />
           <Box
             p="4"
@@ -108,11 +110,13 @@ const App = () => {
           </Box>
         </Flex>
       </Box>
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/book" element={<Book />} />
+        
       </Routes>
     </>
     //   {/* navbar */}
