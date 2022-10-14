@@ -1,4 +1,5 @@
 import {
+
     Image,
     Box,
     Spacer,
@@ -15,6 +16,7 @@ import RegisterPage from "./pages/RegisterPage"
 import Book from "./pages/Book"
 import MyCart from "./pages/MyCart"
 import DetailPage from "./pages/DetailBook"
+
 
 const App = () => {
     return (
@@ -139,4 +141,4 @@ const App = () => {
     )
 }
 
-export default App
+export default App;

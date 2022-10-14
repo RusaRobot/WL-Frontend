@@ -1,3 +1,4 @@
+
 import { Box, Image, Flex, Heading, Text } from "@chakra-ui/react"
 import { useState, useEffect } from "react"
 import { detailsBook } from "../redux/features/bookSlice"
@@ -22,6 +23,7 @@ const DetailPage = () => {
             })
 
             const response = await axiosInstance.get(`/book/${dataBook[0].id}`)
+
 
             setDataBook(response.data.data)
         } catch (err) {
@@ -86,3 +88,4 @@ const DetailPage = () => {
 }
 
 export default DetailPage
+
