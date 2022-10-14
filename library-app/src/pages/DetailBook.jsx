@@ -1,12 +1,4 @@
-import {
-    Box,
-    Image,
-    Container,
-    Flex,
-    Heading,
-    Text,
-    VStack,
-} from "@chakra-ui/react"
+import { Box, Image, Flex, Heading, Text } from "@chakra-ui/react"
 import { useState, useEffect } from "react"
 import { detailsBook } from "../redux/features/bookSlice"
 import { useParams } from "react-router-dom"
@@ -29,7 +21,7 @@ const DetailPage = () => {
                 return val.id == params.id
             })
 
-            const response = await axiosInstance.get(`/book/12`)
+            const response = await axiosInstance.get(`/book/${dataBook[0].id}`)
 
             setDataBook(response.data.data)
         } catch (err) {
@@ -94,15 +86,3 @@ const DetailPage = () => {
 }
 
 export default DetailPage
-
-// {
-//     title,
-//     author,
-//     release_year,
-//     ISBN,
-//     publisher,
-//     genre,
-//     pages,
-//     language,
-//     image_url
-// }
