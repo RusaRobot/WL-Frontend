@@ -15,6 +15,7 @@ import { axiosInstance } from "../api"
 import BookCollection from "../components/bookCollection"
 
 const Book = () => {
+
     const [book, setBook] = useState([])
     const [page, setPage] = useState(0)
     const [limit, setLimit] = useState(10)
@@ -36,10 +37,13 @@ const Book = () => {
       setBook(collection.data.data)
       setPages(collection.data.totalPage)
       setRows(collection.data.totalRows)
+
     } catch (err) {
       console.log(err)
     }
   }
+
+
 
   const renderBooks = () => {
     return book.map((val) => {
@@ -55,6 +59,7 @@ const Book = () => {
       )
     })
   }
+
 
   const searchKey = (event) => {
     event.preventDevault()
@@ -83,6 +88,9 @@ console.log(selected)
         />
         <Button onSubmit={searchKey}>Search</Button>
       </FormControl>
+
+//   title, author, release_year, genre, language
+
       <Box fontWeight={"bold"}>Books</Box>
       <HStack>
         <Box>title</Box>
@@ -92,6 +100,7 @@ console.log(selected)
         <Box>language</Box>
       </HStack>
       {renderBooks()}
+
       <Text>
         Total Rows: {rows} Page: {rows ? page + 1 : 0} of {pages}
       </Text>
