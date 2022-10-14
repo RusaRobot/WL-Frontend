@@ -13,6 +13,8 @@ import Home from "./pages/Home"
 import LoginPage from "./pages/LoginPage"
 import RegisterPage from "./pages/RegisterPage"
 import Book from "./pages/Book"
+import MyCart from "./pages/MyCart"
+
 
 const App = () => {
     return (
@@ -52,6 +54,7 @@ const App = () => {
                     >
                         About
                     </Box>
+                    <Link to="/book">
                     <Box
                         p="4"
                         color="white"
@@ -64,6 +67,8 @@ const App = () => {
                     >
                         Catalog Book
                     </Box>
+                    </Link>
+                    <Link to="/mycart">
                     <Box
                         p="4"
                         color="white"
@@ -74,8 +79,9 @@ const App = () => {
                             cursor: "pointer",
                         }}
                     >
-                        Help
+                        Cart
                     </Box>
+                    </Link>
                     <Spacer />
                     <Box
                         p="4"
@@ -106,6 +112,7 @@ const App = () => {
                             <Input
                                 placeholder="search here"
                                 color={"white"}
+                                // _placeholder= {{color: 'black'}}
                             ></Input>
                             <InputRightElement width={"2,5 rem"}>
                                 <Button
@@ -123,6 +130,8 @@ const App = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/book" element={<Book />} />
+                <Route path="/mycart" element={<MyCart />} />
             </Routes>
         </>
         //   {/* navbar */}
