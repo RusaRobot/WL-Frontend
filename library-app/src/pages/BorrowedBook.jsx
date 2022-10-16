@@ -11,6 +11,7 @@ import {
   } from "@chakra-ui/react";
   import { useState } from "react";
   import { useEffect } from "react";
+import { Link } from "react-router-dom";
   import { axiosInstance } from "../api";
   import BorrowedBookComp from "../components/borrowedBookComp"
   
@@ -50,11 +51,11 @@ import {
     
     const confirmReturnHandler = async (id) => {
       try {
-        await axiosInstance.delete(`/cart/returned`);
+        await axiosInstance.delete("/cart");
         
 
         fetchBooks();
-        toast({ title: "Post deleted", status: "info" });
+        toast({ title: "Books has been returned. Thank you", status: "success" });
       } catch (err) {
         console.log(err);
       }
@@ -98,6 +99,7 @@ import {
               {renderBooks()}
             </Table>
           </HStack>
+          <Link to="/">
           <Button
             colorScheme={"green"}
             alignItems="center"
@@ -107,6 +109,7 @@ import {
           >
             Return Book
           </Button>
+          </Link>
         </Container>
       </Box>
     );
