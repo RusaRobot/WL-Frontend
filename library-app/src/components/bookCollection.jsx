@@ -40,20 +40,20 @@ const BookCollection = ({ title, author, release_year, genre, language }) => {
   //   onDelete()
   // }
 
-  const [book, setBook] = useState([])
+  // const [book, setBook] = useState([])
 
-  const fetchBooks = async () => {
-    try {
-      const collection = await axiosInstance.get("/book")
-      setBook(collection.data)
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  // const fetchBooks = async () => {
+  //   try {
+  //     const collection = await axiosInstance.get("/book")
+  //     setBook(collection.data)
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
 
-  useEffect(() => {
-    fetchBooks()
-  }, [])
+  // useEffect(() => {
+  //   fetchBooks()
+  // }, [])
 
   return (
     <>
