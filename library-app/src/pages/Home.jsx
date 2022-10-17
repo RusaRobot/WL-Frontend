@@ -13,7 +13,8 @@ import {
 
 const Home = () => {
   return (
-    <Box width={"100%"}>
+
+    <Box width={"100%"} overflow={"hidden"}>
       <VStack rowGap={"10%"}>
         <Image
           borderRadius="lg"
@@ -34,32 +35,79 @@ const Home = () => {
           <Button colorScheme={"orange"}>Register</Button>
         </Box>
         <HStack paddingTop={"10%"} spacing={100} backgroundColor={"white"}>
-          <Box fontSize={"4xl"} fontWeight={"bold"} width={"100%"}>
+          <Box
+            fontSize={"4xl"}
+            fontWeight={"bold"}
+            width={"100%"}
+            m={0}
+            display="block"
+          >
             See our collection of secret recipe
           </Box>
           <Box>
             <Button colorScheme="orange">Book Collection</Button>
           </Box>
         </HStack>
-        <HStack>
-          <Flex color="black">
-            <Box w="505px" bg="white" fontSize="3xl">
-              <Text textAlign="center" paddingTop="150px">
-                Temukan Resep Favoritmu dan buat keluargamu nyaman dirumah.
-              </Text>
-            </Box>
-            <Box bg="white" w="505px" fontSize="3xl">
-              <Text textAlign="center" paddingTop="150px">
-                Syarat pendaftaran mudah cukup 60 detik.
-              </Text>
-            </Box>
-            <Box bg="white" w="505px" h="300px" fontSize="3xl">
-              <Text textAlign="center" paddingTop="150px">
-                Buat dan sebarkan resep terbaikmu.
-              </Text>
-            </Box>
-          </Flex>
-        </HStack>
+        {/* <HStack> */}
+        <Box paddingTop={"100px"} />
+        <Text
+          fontWeight={"bold"}
+          fontSize="30px"
+          textAlign={"center"}
+          marginTop={"100px"}
+          bgColor={"#9E7676"}
+        >
+          Most recommended books
+        </Text>
+        <Flex
+          color="black"
+          columnGap={"100px"}
+          textAlign="justify"
+          paddingTop={"50px"}
+          paddingBottom={"100px"}
+          paddingX={"50px"}
+          fontSize="20px"
+        >
+          <Box w="30%">
+            <Image
+              src="https://cdn.istyle.im/images/product/web/89/11/92/00/0/000000921189_01_800.jpg"
+              alt="The Hunger Games"
+              height={"200px"}
+            />
+            <Text fontWeight={"bold"}>The Hunger Games</Text>
+            <Text>
+              Katniss Everdeen must fight for her life in a televised survival
+              competition. Learn these words from the first book of Suzanne
+              Collins's dystopian trilogy.
+            </Text>
+          </Box>
+          <Box w="30%">
+            <Image
+              src="https://cdn.gramedia.com/uploads/items/bumi-manusia-edit.jpg"
+              alt="Bumi Manusia"
+              height={"200px"}
+            />
+            <Text fontWeight={"bold"}>Bumi Manusia</Text>
+            <Text>
+              Tak ada hamparan bunga mawar. Tak ada pelayaran yang menyenangkan.
+              Kuanggap semuanya sebagai tantangan di hadapan seluruh umat
+              manusia. Dan aku tak akan kalah darinya.
+            </Text>
+          </Box>
+          <Box w="30%">
+            <Image
+              src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1597998203l/52465880.jpg"
+              alt="How To Respect Myself"
+              height={"200px"}
+            />
+            <Text fontWeight={"bold"}>How To Respect Myself</Text>
+            <Text>
+              Dalam hidup ini, kita punya beberapa masalah. Tapi saat kau
+              mengkhawatirkannya, kau justru menggandakan masalah tersebut.{" "}
+            </Text>
+          </Box>
+        </Flex>
+        {/* </HStack> */}
       </VStack>
 
       {/* Footer */}
@@ -104,7 +152,7 @@ const Home = () => {
               </FormControl>
 
               <Button
-                bg="blue"
+                bg="orange"
                 marginTop="10px"
                 marginLeft="475px"
                 width="150px"
@@ -114,7 +162,12 @@ const Home = () => {
               </Button>
             </Box>
             <Box flex="1" bg="" width="760px" h="300px" paddingTop="30px">
-              <Text textAlign="center" fontSize="3xl" color="white" paddingRight={"200px"}>
+              <Text
+                textAlign="center"
+                fontSize="3xl"
+                color="white"
+                paddingRight={"200px"}
+              >
                 Hubungi kami
               </Text>
               <Square justifyContent={"center"}>
@@ -141,7 +194,12 @@ const Home = () => {
                   Perpustakaan Resep Bikini Bottom
                 </Text>
               </Square>
-              <Square justifyContent={"center"} marginLeft="40px" paddingLeft={"67px"}>
+
+              <Square
+                justifyContent={"center"}
+                marginLeft="40px"
+                paddingLeft={"67px"}
+              >
                 <Text
                   marginTop={"10px"}
                   color="white"
@@ -151,7 +209,11 @@ const Home = () => {
                   Pasific
                 </Text>
               </Square>
-              <Square justifyContent={"center"} marginLeft="40px" paddingRight={"193px"}>
+              <Square
+                justifyContent={"center"}
+                marginLeft="40px"
+                paddingRight={"193px"}
+              >
                 <Text
                   marginTop={"10px"}
                   fontSize

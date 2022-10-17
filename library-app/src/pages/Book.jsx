@@ -1,13 +1,18 @@
 import {
-  Box,
-  Button,
-  Container,
-  HStack,
-  VStack,
-  Image,
-  Input,
-  FormControl,
-  Text,
+    Box,
+    Button,
+    Input,
+    FormControl,
+    Text,
+    Tr,
+    Tbody,
+    Th,
+    TableContainer,
+    Table,
+    Thead,
+    Heading,
+
+
 } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
 import ReactPaginate from "react-paginate"
@@ -15,13 +20,36 @@ import { axiosInstance } from "../api"
 import BookCollection from "../components/bookCollection"
 
 const Book = () => {
-  const [book, setBook] = useState([])
-  const [page, setPage] = useState(0)
-  const [limit, setLimit] = useState(10)
-  const [pages, setPages] = useState(0)
-  const [rows, setRows] = useState(0)
-  const [keyword, setKeyword] = useState("")
-  const [keywordHandler, setKeywordHandler] = useState("")
+
+
+    const [book, setBook] = useState([])
+    const [page, setPage] = useState(0)
+    const [limit, setLimit] = useState(10)
+    const [pages, setPages] = useState(0)
+    const [rows, setRows] = useState(0)
+    const [keyword, setKeyword] = useState("")
+    const [keywordHandler, setKeywordHandler] = useState("")
+
+    const fetchBooks = async () => {
+        try {
+            const collection = await axiosInstance.get("/book", {
+                params: {
+                    _order: "DESC",
+                    _keywordHandler: keyword,
+                    _page: page,
+                    _limit: limit,
+                },
+            })
+            setBook(collection.data.data)
+            // setPage(collection.data.page)
+            setPages(collection.data.totalPage)
+            setRows(collection.data.totalRows)
+        } catch (err) {
+            console.log(err)
+        }
+
+    }
+
 
   const fetchBooks = async () => {
     try {
