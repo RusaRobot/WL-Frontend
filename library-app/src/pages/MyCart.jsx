@@ -48,7 +48,6 @@ const MyCart = () => {
         <BookCart
           key={val.id.toString()}
           id={val.Book.id}
-          image_url={val.Book.image_url}
           title={val.Book.title}
           author={val.Book.author}
           release_year={val.Book.release_year}
@@ -88,7 +87,6 @@ const MyCart = () => {
             textAlign={"center"}
           >
             <Tr>
-              <Th>Image</Th>
               <Th>Title</Th>
               <Th>Author</Th>
               <Th>Release year</Th>
