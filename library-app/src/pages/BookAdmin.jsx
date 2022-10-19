@@ -23,6 +23,7 @@ import BookCollection from "../components/bookCollection"
 import { CgChevronLeft, CgChevronRight } from "react-icons/cg"
 import AdminBook from "../components/adminBook"
 
+
 const BookAdmin = () => {
     const [book, setBook] = useState([])
     const [page, setPage] = useState(1)
@@ -67,6 +68,7 @@ const BookAdmin = () => {
     const renderBooks = () => {
         return book.map((val) => {
             return (
+
                 <AdminBook
                     key={val.id.toString()}
                     id={val.id}

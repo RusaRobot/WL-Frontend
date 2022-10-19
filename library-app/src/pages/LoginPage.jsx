@@ -15,23 +15,24 @@ import { useDispatch } from "react-redux"
 import * as Yup from "yup"
 import { axiosInstance } from "../api"
 import { login } from "../redux/features/authSlice"
+import { Link } from "react-router-dom"
 
 const LoginPage = () => {
-    const toast = useToast()
+  const toast = useToast();
 
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-    const formik = useFormik({
-        initialValues: {
-            NIM: "",
-            password: "",
-        },
-        onSubmit: async ({ NIM, password }) => {
-            try {
-                const response = await axiosInstance.post("/user/login", {
-                    NIM,
-                    password,
-                })
+  const formik = useFormik({
+    initialValues: {
+      NIM: "",
+      password: "",
+    },
+    onSubmit: async ({ NIM, password }) => {
+      try {
+        const response = await axiosInstance.post("/user/login", {
+          NIM,
+          password,
+        });
 
                 localStorage.setItem("auth_token", response.data.token)
                 console.log(response)
@@ -44,47 +45,46 @@ const LoginPage = () => {
                     })
                 )
 
-                toast({
-                    status: "success",
-                    title: "Login success",
-                    description: response.data.message,
-                })
-            } catch (err) {
-                console.log(err)
-                toast({
-                    status: "error",
-                    title: "Login failed",
-                    description: err.response.data.message,
-                })
-            }
-        },
-        validationSchema: Yup.object({
-            NIM: Yup.number().required().min(3),
-            password: Yup.string().required(),
-        }),
-        validateOnChange: false,
-    })
+        toast({
+          status: "success",
+          title: "Login success",
+          description: response.data.message,
+        });
+      } catch (err) {
+        console.log(err);
+        toast({
+          status: "error",
+          title: "Login failed",
+          description: err.response.data.message,
+        });
+      }
+    },
+    validationSchema: Yup.object({
+      NIM: Yup.number().required().min(3),
+      password: Yup.string().required(),
+    }),
+    validateOnChange: false,
+  });
 
-    const formChangeHandler = ({ target }) => {
-        const { name, value } = target
-        formik.setFieldValue(name, value)
-    }
+  const formChangeHandler = ({ target }) => {
+    const { name, value } = target;
+    formik.setFieldValue(name, value);
+  };
 
-    return (
-        <Box>
-            <Container>
-                <Box
-                    p="8"
-                    borderRadius="20px"
-                    border="solid 1px lightgrey"
-                    marginTop="100px"
-                    bgColor={"#9E7676"}
-                    color={"white"}
-                >
-                    <Text fontWeight="bold" fontSize="4xl" mb="8">
-                        Member
-                    </Text>
-
+  return (
+    <Box>
+      <Container>
+        <Box
+          p="8"
+          borderRadius="20px"
+          border="solid 1px lightgrey"
+          marginTop="100px"
+          bgColor={"#9E7676"}
+          color={"white"}
+        >
+          <Text fontWeight="bold" fontSize="4xl" mb="8">
+            Member
+          </Text>
                     <form onSubmit={formik.handleSubmit}>
                         <Stack>
                             <FormControl isInvalid={formik.errors.NIM}>
@@ -113,12 +113,17 @@ const LoginPage = () => {
                             <Button type="submit" colorScheme="whiteAlpha">
                                 Login
                             </Button>
+                            <Link to="/">
+                            <Button width={"100%"} colorScheme="whiteAlpha">Go to Homepage</Button>
+                            </Link>
                         </Stack>
                     </form>
                 </Box>
             </Container>
         </Box>
-    )
-}
+      </Container>
+    </Box>
+  );
+};
 
-export default LoginPage
+export default LoginPage;
