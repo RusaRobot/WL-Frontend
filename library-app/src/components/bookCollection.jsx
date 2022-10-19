@@ -5,13 +5,13 @@ import {
   Image,
   Button,
   useToast,
-} from "@chakra-ui/react"
-import { useSelector } from "react-redux"
-import { axiosInstance } from "../api"
-import { useState } from "react"
-import { useEffect } from "react"
-import DetailPage from "../pages/DetailBook"
-import { Link } from "react-router-dom"
+} from "@chakra-ui/react";
+import { useSelector } from "react-redux";
+import { axiosInstance } from "../api";
+import { useState } from "react";
+import { useEffect } from "react";
+import DetailPage from "../pages/DetailBook";
+import { Link } from "react-router-dom";
 
 const BookCollection = ({
   id,
@@ -22,50 +22,49 @@ const BookCollection = ({
   genre,
   language,
 }) => {
-  const authSelector = useSelector((state) => state.auth)
+  const authSelector = useSelector((state) => state.auth);
 
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   // const confirmDeleteBtnHandler = () => {
   //   onClose()
   //   onDelete()
   // }
 
-  const toast = useToast()
+  const toast = useToast();
 
-  const [book, setBook] = useState([])
-//   const [addBook, setAddBook] = useState()
+  const [book, setBook] = useState([]);
+  //   const [addBook, setAddBook] = useState()
 
   const fetchBooks = async () => {
     try {
-      const collection = await axiosInstance.get("/book")
-      setBook(collection.data.data)
+      const collection = await axiosInstance.get("/book");
+      setBook(collection.data.data);
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
 
   const pushToCart = async () => {
     try {
       let bookToAdd = {
         BookId: id,
-      }
-      await axiosInstance.post("/cart", bookToAdd)
+      };
+      await axiosInstance.post("/cart", bookToAdd);
 
-      toast({ title: "Book Added", status: "success" })
+      toast({ title: "Book Added", status: "success" });
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  } 
+  };
 
   const addToCartBtn = () => {
-    pushToCart()
-
-  }
+    pushToCart();
+  };
 
   useEffect(() => {
-    fetchBooks()
-  }, [])
+    fetchBooks();
+  }, []);
 
   return (
     <>
@@ -83,11 +82,11 @@ const BookCollection = ({
         <Td>{genre}</Td>
         <Td>{language}</Td>
         <Td>
-          <Button onClick = {addToCartBtn}>Add</Button>
+          <Button onClick={addToCartBtn}>Add</Button>
         </Td>
       </Tr>
     </>
-  )
-}
+  );
+};
 
-export default BookCollection
+export default BookCollection;
