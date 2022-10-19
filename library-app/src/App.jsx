@@ -27,7 +27,6 @@ import { axiosInstance } from "./api";
 import Profil from "./pages/Profil";
 import { useFormik } from "formik";
 
-
 const App = () => {
   const [authCheck, setAuthCheck] = useState(false);
   const authSelector = useSelector((state) => state.auth);
@@ -372,5 +371,19 @@ const App = () => {
     </Box>
   );
 };
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/book" element={<Book />} />
+                <Route path="/mycart" element={<MyCart />} />
+                <Route path="/detail/:bookId" element={<DetailPage />} />
+                <Route path="/borrowed" element={<BorrowedBook />} />
+                <Route path="/admin/detail/:bookId" element={<DetailPageAdmin />} />
+            </Routes>
+        </>
+        //   {/* navbar */}
+    )
+}
 
-export default App;
+export default App

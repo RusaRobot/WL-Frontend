@@ -1,7 +1,6 @@
 import {
   Tr,
   Td,
-  useDisclosure,
   Image,
   Button,
   useToast,
@@ -13,6 +12,7 @@ import { useEffect } from "react";
 import DetailPage from "../pages/DetailBook";
 import { Link } from "react-router-dom";
 
+
 const BookCollection = ({
   id,
   image_url,
@@ -23,8 +23,6 @@ const BookCollection = ({
   language,
 }) => {
   const authSelector = useSelector((state) => state.auth);
-
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   // const confirmDeleteBtnHandler = () => {
   //   onClose()
@@ -46,7 +44,13 @@ const BookCollection = ({
   };
 
   const pushToCart = async () => {
-    try {
+    if (!authSelector.id) {
+      toast({ title: "Need to login", status: "error" })
+      return
+    }
+
+    try { 
+      // if()
       let bookToAdd = {
         BookId: id,
       };
@@ -54,7 +58,10 @@ const BookCollection = ({
 
       toast({ title: "Book Added", status: "success" });
     } catch (err) {
-      console.log(err);
+
+      console.log(err)
+      toast({ title: "Already have this book on cart", status: "error" })
+
     }
   };
 

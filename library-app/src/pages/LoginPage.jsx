@@ -1,20 +1,21 @@
 import {
-  Box,
-  Button,
-  Container,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-  Stack,
-  Text,
-  useToast,
-} from "@chakra-ui/react";
-import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
-import * as Yup from "yup";
-import { axiosInstance } from "../api";
-import { login } from "../redux/features/authSlice";
+    Box,
+    Button,
+    Container,
+    FormControl,
+    FormErrorMessage,
+    FormLabel,
+    Input,
+    Stack,
+    Text,
+    useToast,
+} from "@chakra-ui/react"
+import { useFormik } from "formik"
+import { useDispatch } from "react-redux"
+import * as Yup from "yup"
+import { axiosInstance } from "../api"
+import { login } from "../redux/features/authSlice"
+import { Link } from "react-router-dom"
 
 const LoginPage = () => {
   const toast = useToast();
@@ -33,13 +34,15 @@ const LoginPage = () => {
           password,
         });
 
-        dispatch(
-          login({
-            username: response.data.data.username,
-            email: response.data.data.email,
-            id: response.data.data.id,
-          })
-        );
+                localStorage.setItem("auth_token", response.data.token)
+                console.log(response)
+                dispatch(
+                    login({
+                        username: response.data.data.username,
+                        email: response.data.data.email,
+                        id: response.data.data.id,
+                    })
+                )
 
         toast({
           status: "success",
@@ -81,33 +84,41 @@ const LoginPage = () => {
           <Text fontWeight="bold" fontSize="4xl" mb="8">
             Member
           </Text>
-
-          <form onSubmit={formik.handleSubmit}>
-            <Stack>
-              <FormControl isInvalid={formik.errors.NIM}>
-                <FormLabel>NIM</FormLabel>
-                <Input
-                  value={formik.values.NIM}
-                  name="NIM"
-                  onChange={formChangeHandler}
-                />
-                <FormErrorMessage>{formik.errors.NIM}</FormErrorMessage>
-              </FormControl>
-              <FormControl isInvalid={formik.errors.password}>
-                <FormLabel>Password</FormLabel>
-                <Input
-                  value={formik.values.password}
-                  name="password"
-                  onChange={formChangeHandler}
-                  type="password"
-                />
-                <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
-              </FormControl>
-              <Button type="submit" colorScheme="whiteAlpha">
-                Login
-              </Button>
-            </Stack>
-          </form>
+                    <form onSubmit={formik.handleSubmit}>
+                        <Stack>
+                            <FormControl isInvalid={formik.errors.NIM}>
+                                <FormLabel>NIM</FormLabel>
+                                <Input
+                                    value={formik.values.NIM}
+                                    name="NIM"
+                                    onChange={formChangeHandler}
+                                />
+                                <FormErrorMessage>
+                                    {formik.errors.NIM}
+                                </FormErrorMessage>
+                            </FormControl>
+                            <FormControl isInvalid={formik.errors.password}>
+                                <FormLabel>Password</FormLabel>
+                                <Input
+                                    value={formik.values.password}
+                                    name="password"
+                                    onChange={formChangeHandler}
+                                    type="password"
+                                />
+                                <FormErrorMessage>
+                                    {formik.errors.password}
+                                </FormErrorMessage>
+                            </FormControl>
+                            <Button type="submit" colorScheme="whiteAlpha">
+                                Login
+                            </Button>
+                            <Link to="/">
+                            <Button width={"100%"} colorScheme="whiteAlpha">Go to Homepage</Button>
+                            </Link>
+                        </Stack>
+                    </form>
+                </Box>
+            </Container>
         </Box>
       </Container>
     </Box>

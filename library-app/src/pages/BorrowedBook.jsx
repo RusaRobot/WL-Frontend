@@ -13,9 +13,47 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { axiosInstance } from "../api";
-import BorrowedBookComp from "../components/borrowedBookComp";
-
+  import { axiosInstance } from "../api";
+  import BorrowedBookComp from "../components/borrowedBookComp"
+  
+  const BorrowedBook = () => {
+    const [book, setBook] = useState([]);
+    const toast = useToast()
+    
+    const fetchBooks = async () => {
+      try {
+        const collection = await axiosInstance.get("/cart/borrowed");
+        setBook(collection.data.data);
+        // console.log(collection.data.data);
+        // setBook(collection.data.data[i].Book);
+        // console.log(collection.data.data[i].Book)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+  
+  
+    const renderBooks = () => {
+      return book.map((val) => {
+        return (
+          <BorrowedBookComp
+            key={val.id.toString()}
+            id={val.Book.id}
+            image_url={val.Book.image_url}
+            title={val.Book.title}
+            author={val.Book.author}
+            release_year={val.Book.release_year}
+            genre={val.Book.genre}
+            language={val.Book.language}
+          />
+        );
+      });
+    };
+    
+    const confirmReturnHandler = async (id) => {
+      try {
+        await axiosInstance.delete("/cart");
+        
 const BorrowedBook = () => {
   const [book, setBook] = useState([]);
   const toast = useToast();

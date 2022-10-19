@@ -80,11 +80,12 @@ const Book = () => {
     });
   };
 
-  const searchKey = (event) => {
-    event.preventDevault();
-    setPage(0);
-    setKeyword(keywordHandler);
-  };
+
+    const searchKey = (event) => {
+        // event.preventDevault()
+        setPage(0)
+        setKeyword(keywordHandler)
+    }
 
   useEffect(() => {
     fetchBooks();
@@ -111,9 +112,70 @@ const Book = () => {
             justifyContent: "flex-end",
           }}
         >
-          <Button onSubmit={searchKey} mr={0}>
-            Search
-          </Button>
+
+            <FormControl>
+                <Input
+                    name="input"
+                    value={keywordHandler}
+                    onChange={(event) => setKeywordHandler(event.target.value)}
+                />
+               
+                    <Button onClick={searchKey} mr={0}>
+                        Search
+                    </Button>
+                
+            </FormControl>
+
+            <Heading fontWeight={"bold"} size={"lg"}>
+                Books
+            </Heading>
+            <TableContainer>
+                <Table variant="simple">
+                    <Thead>
+                        <Tr>
+                            <Th>Image</Th>
+                            <Th>Title</Th>
+                            <Th>Author</Th>
+                            <Th>Release Year</Th>
+                            <Th>Genre</Th>
+                            <Th>Language</Th>
+                            <Th>Cart</Th>
+                        </Tr>
+                    </Thead>
+                    <Tbody>{renderBooks()}</Tbody>
+                </Table>
+            </TableContainer>
+            <Text>
+                Page: {pages} of {maxPage}
+            </Text>
+            <Grid templateColumns={"repeat(3, 1fr"} mt={15}>
+                <GridItem />
+                <GridItem />
+                <GridItem>
+                    {!book.length ? (
+                        <Alert status="warning">
+                            <AlertIcon />
+                            <AlertTitle>No post found</AlertTitle>
+                        </Alert>
+                    ) : null}
+                    <HStack justifyContent={"end"} gap={"2px"}>
+                        {pages === 0 ? null : (
+                            <CgChevronLeft onClick={prevPage} color={"#9E7676"}>
+                                {""}
+                            </CgChevronLeft>
+                        )}
+                        <Text fontSize={"md"}>{pages}</Text>
+                        {pages >= maxPage ? null : (
+                            <CgChevronRight
+                                onClick={nextPage}
+                                color={"#9E7676"}
+                            >
+                                Next
+                            </CgChevronRight>
+                        )}
+                    </HStack>
+                </GridItem>
+            </Grid>
         </div>
       </FormControl>
 
